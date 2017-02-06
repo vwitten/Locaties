@@ -80,3 +80,4 @@ D:\WorkSpaces\Trusti\locaties\Locaties\Locaties\Locaties\bin\Microsoft.Owin.Secu
 D:\WorkSpaces\Trusti\locaties\Locaties\Locaties\Locaties\obj\Debug\Locaties.dll
 D:\WorkSpaces\Trusti\locaties\Locaties\Locaties\Locaties\obj\Debug\Locaties.pdb
 D:\WorkSpaces\Trusti\locaties\Locaties\Locaties\Locaties\bin\Jmelosegui.Mvc.GoogleMap.dll
+D:\WorkSpaces\Trusti\locaties\Locaties\Locaties\Locaties\obj\Debug\Locaties.csprojResolveAssemblyReference.cache

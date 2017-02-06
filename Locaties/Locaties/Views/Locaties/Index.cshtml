@@ -4,6 +4,23 @@
     ViewBag.Title = "Locaties";
 }
 
+<script src="@Url.Content("~/Scripts/jquery2.1.4.min.js")" type="text/javascript"></script>
+@* Dit script bevat een functie die de latitude en longtitude doorsturen naar de controller. *@
+<script>
+    // vraagt de coordinaten op.
+    navigator.geolocation.getCurrentPosition(show_map);
+
+    function show_map(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        // post de resultaten door naar de controller.
+        var url = "/Locaties/Index?latitude=" + latitude + "&longtitude=" + longitude;
+        $.post(url, function (data) {
+        });
+    }
+</script>
+
 <h2>Locaties</h2>
 
 <table class="table">

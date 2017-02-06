@@ -15,9 +15,18 @@ namespace Locaties.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Locaties
-        public ActionResult Index()
+        // GET: Locaties        
+        /// <summary>
+        /// Stuurd de gebruiker door naar een pagina met een lijst van alle locaties die gesorteerd zijn op basis van de gebruikers locatie.
+        /// </summary>
+        /// <param name="latitude">de latitude.</param>
+        /// <param name="longtitude">de longtitude.</param>
+        /// <returns>View met gesorteerde locatie lijst.</returns>
+        public ActionResult Index(string latitude, string longtitude)
         {
+            //bevat de latitude en longitude van het apparaat.
+            string apparaatLocatie = latitude + ", " + longtitude;
+
             //leest het JSON bestand in en slaat het op in een string.
             string json = System.IO.File.ReadAllText(Server.MapPath("~/JSON/locaties.json"));
             //maakt een variable met alle locaties als lijst.
@@ -26,6 +35,10 @@ namespace Locaties.Controllers
             return View(LocatieLijst);
         }
 
+        /// <summary>
+        /// Stuurde de gebruiker door naar een pagina met een google maps. hierop staan alle locaties aan gegeven met een mark.
+        /// </summary>
+        /// <returns>View met een IEnumerable van alle locaties</returns>
         public ActionResult GMap()
         {
             //leest het JSON bestand in en slaat het op in een string.
