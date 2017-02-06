@@ -1,0 +1,46 @@
+﻿@using Jmelosegui.Mvc.GoogleMap
+@model IEnumerable<Locaties.Models.Locatie>
+@{
+    ViewBag.Title = "GMap";
+}
+
+<h2>GMap</h2>
+
+<div class="col-md-12">
+
+    @* Code block voor de google maps helper 'Jmelosegui' *@
+    @(
+        Html.GoogleMap()
+            //geeft de map een naam
+            .Name("map")
+            //bepaald de hoogte van de map
+            .Height(700)
+            //de api key zodat er gegevens van google maps kan worden opgevraagd
+            .ApiKey("AIzaSyAp0fgo8aYTcWwUReJSwE8iAkSI3G61xg4")
+            //locatie waar de maps begind
+            .Center(c => c.Latitude(52.132633)
+            .Longitude(5.291266))
+            //als de map wordt geladen dan begind het met deze zoom
+            .Zoom(7)
+            //hier worden alle locaties uit de IEnumerable die meegevenen zijn aan de view gebind aan een marker. zo onstaat er voor elke locatie een marker op de map.
+            .BindTo<Locaties.Models.Locatie, Marker>
+            (Model, mappings => mappings.For<Locaties.Models.Locatie>
+                    (
+                        binding => binding.ItemDataBound
+                            (
+                                (marker, locaties) =>
+                                {
+                                    marker.Latitude = (double)locaties.Latitude;
+                                    marker.Longitude = (double)locaties.Longitude;
+                                    marker.Title = locaties.StoreName;
+                                }
+                            )
+                    )
+            )
+    )
+</div>
+
+@section scripts
+    {
+    @(Html.GoogleMap().ScriptRegistrar())
+}

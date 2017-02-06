@@ -1,24 +1,21 @@
 ﻿@model IEnumerable<Locaties.Models.Locatie>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Locaties";
 }
 
-<h2>Index</h2>
+<h2>Locaties</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Longitude)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Street)
+            @Html.DisplayNameFor(model => model.Latitude)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Latitude)
+            @Html.DisplayNameFor(model => model.Street)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.City)
@@ -29,7 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.StoreName)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.FacebookID)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -38,10 +37,10 @@
             @Html.DisplayFor(modelItem => item.Longitude)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Street)
+            @Html.DisplayFor(modelItem => item.Latitude)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
+            @Html.DisplayFor(modelItem => item.Street)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.City)
@@ -53,9 +52,7 @@
             @Html.DisplayFor(modelItem => item.StoreName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LocatieID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LocatieID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LocatieID })
+            @Html.DisplayFor(modelItem => item.FacebookID)
         </td>
     </tr>
 }
