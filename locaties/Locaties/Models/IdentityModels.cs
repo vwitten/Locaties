@@ -29,5 +29,7 @@ namespace Locaties.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Locaties.Models.Locatie> Locaties { get; set; }
     }
 }
