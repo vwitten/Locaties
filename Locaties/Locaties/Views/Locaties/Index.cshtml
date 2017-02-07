@@ -1,11 +1,12 @@
-﻿@model IEnumerable<Locaties.Models.Locatie>
+﻿
+@model IEnumerable<Locaties.Models.Locatie>
 
 @{
     ViewBag.Title = "Locaties";
 }
 
 <script src="@Url.Content("~/Scripts/jquery2.1.4.min.js")" type="text/javascript"></script>
-@* Dit script bevat een functie die de latitude en longtitude doorsturen naar de controller. *@
+ Dit script bevat een functie die de latitude en longtitude doorsturen naar de controller. 
 <script>
     // vraagt de coordinaten op.
     navigator.geolocation.getCurrentPosition(show_map);
@@ -72,6 +73,7 @@
             @Html.DisplayFor(modelItem => item.FacebookID)
         </td>
     </tr>
+
 }
 
 </table>

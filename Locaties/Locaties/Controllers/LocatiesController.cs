@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Locaties.Models;
 using Newtonsoft.Json;
+using PagedList;
 
 namespace Locaties.Controllers
 {
@@ -24,8 +25,9 @@ namespace Locaties.Controllers
         /// <returns>View met gesorteerde locatie lijst.</returns>
         public ActionResult Index(string latitude, string longtitude)
         {
-            //bevat de latitude en longitude van het apparaat.
+            //bevat de latitude en longitude van de momenteele locatie van het apparaat.
             string apparaatLocatie = latitude + ", " + longtitude;
+            
 
             //leest het JSON bestand in en slaat het op in een string.
             string json = System.IO.File.ReadAllText(Server.MapPath("~/JSON/locaties.json"));
