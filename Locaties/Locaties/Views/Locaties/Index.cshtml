@@ -6,7 +6,7 @@
 }
 
 <script src="@Url.Content("~/Scripts/jquery2.1.4.min.js")" type="text/javascript"></script>
- Dit script bevat een functie die de latitude en longtitude doorsturen naar de controller. 
+ @*Dit script bevat een functie die de latitude en longtitude doorsturen naar de controller.*@ 
 <script>
     // vraagt de coordinaten op.
     navigator.geolocation.getCurrentPosition(show_map);
@@ -16,7 +16,7 @@
         var longitude = position.coords.longitude;
 
         // post de resultaten door naar de controller.
-        var url = "/Locaties/Index?latitude=" + latitude + "&longtitude=" + longitude;
+        var url = "/Locaties/Index?latitude=" + latitude + "&longitude=" + longitude;
         $.post(url, function (data) {
         });
     }
@@ -24,7 +24,7 @@
 
 <h2>Locaties</h2>
 
-<table class="table">
+<table class="table" id="container">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Longitude)

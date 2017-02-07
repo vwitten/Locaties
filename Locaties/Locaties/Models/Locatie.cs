@@ -31,5 +31,29 @@ namespace Locaties.Models
         //het facebookID van de locatie
         [JsonProperty(PropertyName = "FACEBOOK ID")]
         public string FacebookID { get; set; }
+        //de afstand tussen deze locatie en de gebruiker.
+        public double Distance { get; set; }
+
+        public Locatie(decimal _Longitude, decimal _Latitude, string _Street, string _City, string _ZipCode, string _StoreName, string _FacebookID)
+        {
+            this.Longitude = _Longitude;
+            this.Latitude = _Latitude;
+            this.Street = _Street;
+            this.City = _City;
+            this.ZipCode = _ZipCode;
+            this.StoreName = _StoreName;
+            this.FacebookID = _FacebookID;
+        }
+        //public Locatie(decimal _Longitude, decimal _Latitude, string _Street, string _City, string _ZipCode, string _StoreName, string _FacebookID, double _Distance)
+        //{
+        //    this.Longitude = _Longitude;
+        //    this.Latitude = _Latitude;
+        //    this.Street = _Street;
+        //    this.City = _City;
+        //    this.ZipCode = _ZipCode;
+        //    this.StoreName = _StoreName;
+        //    this.FacebookID = _FacebookID;
+        //    this.Distance = _Distance;
+        //}
     }
 }

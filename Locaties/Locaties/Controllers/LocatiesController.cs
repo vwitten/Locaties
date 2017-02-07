@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using Locaties.Models;
 using Newtonsoft.Json;
 using PagedList;
+using System.Device;
+using System.Device.Location;
+using System.Globalization;
 
 namespace Locaties.Controllers
 {
@@ -23,16 +26,30 @@ namespace Locaties.Controllers
         /// <param name="latitude">de latitude.</param>
         /// <param name="longtitude">de longtitude.</param>
         /// <returns>View met gesorteerde locatie lijst.</returns>
-        public ActionResult Index(string latitude, string longtitude)
+        public ActionResult Index(string latitude, string longitude)
         {
-            //bevat de latitude en longitude van de momenteele locatie van het apparaat.
-            string apparaatLocatie = latitude + ", " + longtitude;
             
-
             //leest het JSON bestand in en slaat het op in een string.
             string json = System.IO.File.ReadAllText(Server.MapPath("~/JSON/locaties.json"));
             //maakt een variable met alle locaties als lijst.
-            var LocatieLijst = JsonConvert.DeserializeObject<List<Locatie>>(json);
+            List<Locatie> LocatieLijst = JsonConvert.DeserializeObject<List<Locatie>>(json);
+
+            
+
+            if (latitude != null && longitude != null)
+            {
+                //bevat de latitude en longitude van de momenteele locatie van het apparaat.
+                var uCoord = new GeoCoordinate(Convert.ToDouble(latitude, CultureInfo.InvariantCulture), Convert.ToDouble(longitude, CultureInfo.InvariantCulture));
+
+                foreach (var l in LocatieLijst)
+                {
+                    var Coordinate = new GeoCoordinate(Double.Parse(l.Latitude.ToString()), Double.Parse(l.Longitude.ToString()));
+                    var distance = uCoord.GetDistanceTo(Coordinate);
+
+                    l.Distance = distance;
+                }
+                return View(LocatieLijst.OrderBy(d => d.Distance).ToList());
+            }
             //geeft een webpagina weer met de locatie variable als lijst.
             return View(LocatieLijst);
         }
